@@ -22,7 +22,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import { getContractSource } from '../../services/etherscanService';
-import { analyzeContract } from '../../services/veniceService';
+import { analyzeContract } from '../../services/mockVeniceService';
 
 // Define the analysis type
 interface CategoryAnalysis {
