@@ -7,9 +7,17 @@ const Header = () => {
     <AppBar position="static" color="transparent" elevation={0} sx={{ mb: 4 }}>
       <Toolbar>
         <ShieldIcon sx={{ mr: 2, color: 'primary.main', fontSize: 40 }} />
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-          Smart Contract Auditor
-        </Typography>
+        
+        {/* Title and Subtitle Container */}
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+            Bridge of Codes
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            AI-Powered Smart Contract Translator & Analyzer
+          </Typography>
+        </Box>
+
         <Box>
           <Button 
             variant="outlined" 
