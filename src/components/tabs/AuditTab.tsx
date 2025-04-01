@@ -13,7 +13,9 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemIcon
+  ListItemIcon,
+  Tooltip,
+  IconButton
 } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import SearchIcon from '@mui/icons-material/Search';
@@ -21,6 +23,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import WarningIcon from '@mui/icons-material/Warning';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import { getContractSource } from '../../services/etherscanService';
 import { analyzeContract } from '../../services/veniceService';
 
@@ -78,6 +81,15 @@ const AuditTab = () => {
     }
   };
 
+  const handlePaste = async () => {
+    try {
+      const clipboardText = await navigator.clipboard.readText();
+      setContractCode(clipboardText);
+    } catch (err) {
+      setError("Failed to access clipboard. Please paste manually.");
+    }
+  };
+
   const getRiskColor = (riskLevel: string) => {
     switch(riskLevel.toLowerCase()) {
       case 'low': return 'success.main';
@@ -123,9 +135,16 @@ const AuditTab = () => {
         </Paper>
 
         <Paper sx={{ p: 3 }}>
-          <Typography variant="h6" gutterBottom>
-            Contract Code
-          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="h6">
+              Contract Code
+            </Typography>
+            <Tooltip title="Paste from clipboard">
+              <IconButton onClick={handlePaste} color="primary">
+                <ContentPasteIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
           <TextField
             fullWidth
             multiline
@@ -149,6 +168,7 @@ const AuditTab = () => {
             disabled={loading || !contractCode}
             startIcon={<AnalyticsIcon />}
             sx={{ mt: 2 }}
+            fullWidth
           >
             {loading ? <CircularProgress size={24} /> : 'Audit Contract'}
           </Button>
@@ -279,6 +299,50 @@ const AuditTab = () => {
                   </ListItem>
                 )}
               </List>
+              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'space-between' }}>
+                <Button 
+                  variant="outlined" 
+                  color="primary"
+                  startIcon={<ContentPasteIcon />}
+                  onClick={() => {
+                    const reportText = `
+                    # Smart Contract Audit Report
+                    
+                    ## Overall Score: ${analysis.overall_score}/100
+                    
+                    ## Complexity Analysis
+                    - Risk Level: ${analysis.complexity.risk_level}
+                    - Score: ${analysis.complexity.score}/100
+                    ${analysis.complexity.details.map(detail => `- ${detail}`).join('\n')}
+                    
+                    ## Vulnerability Analysis
+                    - Risk Level: ${analysis.vulnerabilities.risk_level}
+                    - Score: ${analysis.vulnerabilities.score}/100
+                    ${analysis.vulnerabilities.details.map(detail => `- ${detail}`).join('\n')}
+                    
+                    ## Upgradability Analysis
+                    - Risk Level: ${analysis.upgradability.risk_level}
+                    - Score: ${analysis.upgradability.score}/100
+                    ${analysis.upgradability.details.map(detail => `- ${detail}`).join('\n')}
+                    
+                    ## Behavior Analysis
+                    - Risk Level: ${analysis.behavior.risk_level}
+                    - Score: ${analysis.behavior.score}/100
+                    ${analysis.behavior.details.map(detail => `- ${detail}`).join('\n')}
+                    `;
+                    navigator.clipboard.writeText(reportText);
+                  }}
+                >
+                  Copy Report
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => window.print()}
+                >
+                  Export as PDF
+                </Button>
+              </Box>
             </Box>
           </Paper>
         )}
