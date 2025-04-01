@@ -57,20 +57,21 @@ const AuditorTabs = () => {
           textColor="primary"
           indicatorColor="primary"
         >
-          <Tab icon={<SecurityIcon />} label="AUDIT" {...a11yProps(0)} />
-          <Tab icon={<TranslateIcon />} label="TRANSLATE" {...a11yProps(1)} />
+          <Tab icon={<TranslateIcon />} label="TRANSLATE" {...a11yProps(0)} />
+          <Tab icon={<SecurityIcon />} label="AUDIT" {...a11yProps(1)} />
+          
           <Tab icon={<CodeIcon />} label="INSURANCE" {...a11yProps(2)} />
         </Tabs>
       </Box>
       
       <TabPanel value={value} index={0}>
-        <AuditTab />
-      </TabPanel>
-      
-      <TabPanel value={value} index={1}>
         <TranslateTab />
       </TabPanel>
-      
+
+      <TabPanel value={value} index={1}>
+        <AuditTab />
+      </TabPanel>
+       
       <TabPanel value={value} index={2}>
         <InsuranceTab />
       </TabPanel>
