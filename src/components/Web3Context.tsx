@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { useWeb3React } from '@web3-react/core';
@@ -18,7 +18,7 @@ interface Web3ContextType {
   connect: () => Promise<void>;
   disconnect: () => void;
   isActive: boolean;
-  library: any;
+  library: ethers.providers.Web3Provider | null;
   balance: string;
   isConnecting: boolean;
   error: Error | null;
@@ -41,7 +41,7 @@ const Web3Context = createContext<Web3ContextType>({
 export const useWeb3 = () => useContext(Web3Context);
 
 export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { activate, deactivate, account, chainId, library, active, error } = useWeb3React();
+  const { activate, deactivate, account, chainId, library, active, error } = useWeb3React<ethers.providers.Web3Provider>();
   const [balance, setBalance] = useState('0');
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -57,8 +57,8 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
     return chainNames[chainId] || `Chain #${chainId}`;
   };
 
-  // Connect to wallet
-  const connect = async () => {
+  // Connect to wallet - using useCallback to memoize the function
+  const connect = useCallback(async () => {
     setIsConnecting(true);
     try {
       await activate(injectedConnector);
@@ -67,7 +67,7 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setIsConnecting(false);
     }
-  };
+  }, [activate]);
 
   // Disconnect wallet
   const disconnect = () => {
@@ -79,6 +79,9 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
     if (account && library) {
       library.getBalance(account).then((balance: ethers.BigNumber) => {
         setBalance(ethers.utils.formatEther(balance));
+      }).catch(error => {
+        console.error('Error fetching balance:', error);
+        setBalance('0');
       });
     } else {
       setBalance('0');
@@ -91,21 +94,23 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
       if (isAuthorized) {
         connect();
       }
+    }).catch(error => {
+      console.error('Authorization check error:', error);
     });
-  }, []);
+  }, [connect]); // Added connect as a dependency
 
   return (
     <Web3Context.Provider
       value={{
-        account,
-        chainId,
+        account: account || null,
+        chainId: chainId || null,
         connect,
         disconnect,
         isActive: active,
-        library,
+        library: library || null,
         balance,
         isConnecting,
-        error,
+        error: error || null,
         getChainName,
       }}
     >

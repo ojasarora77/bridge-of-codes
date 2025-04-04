@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 import ShieldIcon from '@mui/icons-material/Shield';
+import SimpleWalletConnect from './walletConnect';
 
 const Header = () => {
   return (
@@ -17,6 +18,11 @@ const Header = () => {
             AI-Powered Smart Contract Translator & Analyzer
           </Typography>
         </Box>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+  <SimpleWalletConnect />
+  <Button>...</Button>
+</Box>
 
         <Box>
           <Button 
