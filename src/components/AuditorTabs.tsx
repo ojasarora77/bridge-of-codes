@@ -6,6 +6,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import AuditTab from './tabs/AuditTab';
 import TranslateTab from '././tabs/TranslateTab';
 import InsuranceTab from './tabs/InsuranceTab';
+import SubscriptionTab from './tabs/subscribstionTab';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -59,8 +60,8 @@ const AuditorTabs = () => {
         >
           <Tab icon={<TranslateIcon />} label="TRANSLATE" {...a11yProps(0)} />
           <Tab icon={<SecurityIcon />} label="AUDIT" {...a11yProps(1)} />
-          
           <Tab icon={<CodeIcon />} label="INSURANCE" {...a11yProps(2)} />
+          <Tab icon={<SecurityIcon />} label="SUBSCRIPTION" {...a11yProps(3)} />
         </Tabs>
       </Box>
       
@@ -70,6 +71,10 @@ const AuditorTabs = () => {
 
       <TabPanel value={value} index={1}>
         <AuditTab />
+      </TabPanel>
+
+      <TabPanel value={value} index={3}>
+        <SubscriptionTab />
       </TabPanel>
        
       <TabPanel value={value} index={2}>
