@@ -4,7 +4,7 @@ import { InjectedConnector } from '@web3-react/injected-connector';
 import { useWeb3React } from '@web3-react/core';
 
 // Define supported chain IDs
-const SUPPORTED_CHAIN_IDS = [1, 11155111, 137, 42161, 10]; // Mainnet, Sepolia, Polygon, Arbitrum, Optimism
+const SUPPORTED_CHAIN_IDS = [1,421614, 137, 42161, 10]; // Mainnet, Sepolia, Arbitrum Sepolia
 
 // Create injected connector
 export const injectedConnector = new InjectedConnector({
