@@ -50,4 +50,4 @@ export const getContractABI = async (contractAddress: string, network: string = 
     console.error('Error fetching ABI from Etherscan:', error);
     throw new Error('Failed to retrieve contract ABI from Etherscan');
   }
-};
+};//#todo: add other scan services like basescan or tesnets
