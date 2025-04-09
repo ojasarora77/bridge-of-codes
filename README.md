@@ -1,6 +1,6 @@
 # Bridge of Codes: Smart Contract Insurance Platform
 
-![Bridge of Codes Logo](https://example.com/your-logo.png) 
+![Bridge of Codes Logo](https://github.com/ojasarora77/VeniceBreach/blob/master/public/bridge_of_codes_logo.png)
 
 Bridge of Codes is a comprehensive platform that uses AI to analyze smart contracts for security vulnerabilities and offers subscription-based insurance coverage against potential exploits. The platform combines advanced security analysis with blockchain-based insurance, providing developers and projects with both preventative insights and financial protection.
 
