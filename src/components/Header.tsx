@@ -15,7 +15,7 @@ const Header = () => {
             Bridge of Codes
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            AI-Powered Smart Contract Translator & Analyzer
+            AI-Powered Smart Contract Translator & Analyzer with insurance subscription services
           </Typography>
         </Box>
 
