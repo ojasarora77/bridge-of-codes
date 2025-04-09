@@ -1,13 +1,19 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
-import ShieldIcon from '@mui/icons-material/Shield';
 import SimpleWalletConnect from './walletConnect';
 
 const Header = () => {
   return (
     <AppBar position="static" color="transparent" elevation={0} sx={{ mb: 4 }}>
       <Toolbar>
-        <ShieldIcon sx={{ mr: 2, color: 'primary.main', fontSize: 40 }} />
+        {/* Replace Shield icon with custom logo */}
+        <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+          <img 
+            src="/bridge_of_codes_logo.png" 
+            alt="Bridge of Codes Logo" 
+            style={{ height: 40 }}
+          />
+        </Box>
         
         {/* Title and Subtitle Container */}
         <Box sx={{ flexGrow: 1 }}>
@@ -20,9 +26,9 @@ const Header = () => {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-  <SimpleWalletConnect />
-  <Button>...</Button>
-</Box>
+          <SimpleWalletConnect />
+          <Button>...</Button>
+        </Box>
 
         <Box>
           <Button 
@@ -37,7 +43,7 @@ const Header = () => {
           <Button 
             variant="contained" 
             color="primary"
-            href="https://venice.is/"
+            href="https://venice.ai/chat"
             target="_blank"
           >
             Powered by Venice AI
