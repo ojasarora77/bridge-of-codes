@@ -5,7 +5,7 @@
 Bridge of Codes is a comprehensive platform that uses AI to analyze smart contracts for security vulnerabilities and offers subscription-based insurance coverage against potential exploits. The platform combines advanced security analysis with blockchain-based insurance, providing developers and projects with both preventative insights and financial protection.
 
 ## Features
-
+***Every AI service is powered by Venice AI -> deep research bounty
 - **AI-Powered Security Analysis**: Deep scanning of smart contract code to identify vulnerabilities, assess complexity, and evaluate upgrade mechanisms.
 - **Risk-Based Insurance Policies**: Custom insurance policies with premiums calculated based on the AI's risk assessment.
 - **Cross-Chain Contract Translation**: Translation capabilities between different blockchain languages (Solidity, Rust, Vyper, Haskell) to help developers understand contracts across ecosystems.
