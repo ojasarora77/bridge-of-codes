@@ -26,7 +26,6 @@ Bridge of Codes is a comprehensive platform that uses AI to analyze smart contra
   - [Filing Claims](#filing-claims)
 - [How It Works](#how-it-works)
 - [Development](#development)
-- [License](#license)
 - [Contact](#contact)
 
 ## Installation
@@ -78,6 +77,7 @@ You'll need test ETH to interact with our platform on Arbitrum Sepolia:
 2. Connect your wallet or enter your wallet address
 3. Request free test ETH
 4. Alternatively, you can bridge test ETH from Ethereum Sepolia using the [Arbitrum Bridge](https://bridge.arbitrum.io/)
+5. Or mail/discord me to recieve some test funds @ojas7891, ojasnf@gmail.com 
 
 ## Usage
 
@@ -169,9 +169,6 @@ REACT_APP_SOLSCAN_API_KEY=your_solscan_key
 REACT_APP_VENICE_API_KEY=your_venice_key
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
